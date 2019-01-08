@@ -22,12 +22,11 @@ export async function main(event, context) {
     const result = await dynamoDbLib.call('update', params);
     if (result) {
       return success({ status: true });
-    } else {
-      return failure({
-        status: false,
-        error: 'Something went wrong. Could not update.'
-      });
     }
+    return failure({
+      status: false,
+      error: 'Something went wrong. Could not update.'
+    });
   } catch (error) {
     console.log(error);
     return failure({ status: false });
