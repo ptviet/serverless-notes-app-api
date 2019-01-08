@@ -14,9 +14,8 @@ export async function main(event, context) {
     const result = await dynamoDbLib.call('query', params);
     if (result.Items) {
       return success(result.Items);
-    } else {
-      return failure({ status: false, error: 'Not Found.' });
     }
+    return failure({ status: false, error: 'Not Found.' });
   } catch (error) {
     console.log(error);
     return failure({ status: false });
